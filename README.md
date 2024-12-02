@@ -42,5 +42,5 @@ python main.py [options]
 
 2. Run the benchmark with 8 rounds, each lasting 15 seconds, and save results to `results.csv` and `results.html`:
     ```bash
-    python main.py -r 8 -d 15 -o results.txt
+    python main.py -r 8 -d 15 -o results
     ```
