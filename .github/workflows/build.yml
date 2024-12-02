@@ -1,0 +1,71 @@
+name: Build and Bundle Python App on Release
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+
+      # Build the executable with PyInstaller
+      - name: Build Executable
+        run: |
+          pyinstaller --onefile --name=pps-cpu-benchmark main.py
+
+      # Archive the build output as an artifact
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pps-cpu-benchmark-linux
+          path: dist/pps-cpu-benchmark
+
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+
+      # Build the executable with PyInstaller
+      - name: Build Executable
+        run: |
+          pyinstaller --onefile --name=pps-cpu-benchmark main.py
+
+      # Archive the build output as an artifact
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pps-cpu-benchmark-windows
+          path: dist\pps-cpu-benchmark.exe
