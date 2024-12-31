@@ -40,7 +40,7 @@ python main.py [options]
     python main.py
     ```
 
-2. Run the benchmark with 8 rounds, each lasting 15 seconds, and save results to `results.csv` and `results.html`:
+2. Run the benchmark with 6 rounds, each lasting 10 seconds, and save results to `results.csv` and `results.html`:
     ```bash
-    python main.py -r 8 -d 15 -o results
+    python main.py -r 6 -d 10 -o results
     ```
